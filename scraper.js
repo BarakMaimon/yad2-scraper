@@ -35,7 +35,7 @@ const scrapeItemsAndExtractImgUrls = async (url) => {
     }
     const imageUrls = []
     $feedItems.each((_, elm) => {
-        const imgSrc = $(elm).find("img").attr('src');
+        const imgSrc = $(elm).attr('src');
         if (imgSrc) {
             imageUrls.push(imgSrc)
         }
