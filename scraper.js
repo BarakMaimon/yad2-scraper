@@ -23,21 +23,28 @@ const scrapeItemsAndExtract = async (url) => {
     throw new Error("Could not get Yad2 response");
   }
   const $ = cheerio.load(yad2Html);
-  const $feedItems = $(".feed-item-base_itemMainContent__WFXEZ a"); // Selecting anchor tags within feed items
+  const $feedItems = $(".feed-item-base_itemMainContent__WFXEZ a");
   const htmlContents = [];
-  $feedItems.each(async (_, anchor) => {
-    const href = $(anchor).attr("href"); // Extracting the href attribute
-    if (href) {
-      try {
-        const response = await axios.get(href); // Fetching the HTML content of the linked page
-        const html = response.data;
-        htmlContents.push(html); // Pushing the HTML content to the array
-      } catch (error) {
-        console.error(`Error fetching HTML content from ${href}:`, error);
+  // Map the anchor tags to an array of promises representing the asynchronous axios requests
+  const promises = $feedItems
+    .map(async (_, anchor) => {
+      const href = $(anchor).attr("href");
+      if (href) {
+        try {
+          const response = await axios.get(href);
+          const html = response.data;
+          htmlContents.push(html);
+        } catch (error) {
+          console.error(`Error fetching HTML content from ${href}:`, error);
+        }
       }
-    }
-  });
-  console.log("html content - " + htmlContents);
+    })
+    .get(); // Extract the promises from the jQuery object
+
+  // Wait for all promises to resolve using Promise.all
+  await Promise.all(promises);
+
+  console.log("html content - ", htmlContents);
   return htmlContents;
 };
 
