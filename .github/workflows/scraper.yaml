@@ -26,7 +26,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "${{ secrets.GIT_CONFIG_EMAIL }}"
-          
+
       - name: Debug Environment Variables
         run: |
           echo "API_TOKEN: $API_TOKEN"
@@ -37,12 +37,11 @@ jobs:
           export API_TOKEN=${{ secrets.API_TOKEN }}
           export CHAT_ID=${{ secrets.CHAT_ID }}
           yarn scrape
-          
-      - name: Debug Secrets
-	    run: |
-		  echo "API_TOKEN: ${{ secrets.API_TOKEN }}"
-		  echo "CHAT_ID: ${{ secrets.CHAT_ID }}"
 
+      - name: Debug Secrets
+        run: |
+          echo "API_TOKEN: ${{ secrets.API_TOKEN }}"
+          echo "CHAT_ID: ${{ secrets.CHAT_ID }}"
 
       - name: Push new json data if needed
         run: |
