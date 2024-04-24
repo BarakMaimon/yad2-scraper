@@ -4,7 +4,8 @@
   "projects": [
     {
       "topic": "Opel",
-      "url": "https://www.yad2.co.il/vehicles/cars"
+      "url": "https://www.yad2.co.il/vehicles/cars",
+      "disabled": true
     }
   ]
 }
