@@ -33,7 +33,7 @@ const scrapeItemsAndExtract = async (url) => {
     if (href) {
       try {
         const response = await axios.get(href); // Fetch the HTML content from the URL
-        console.log("response - " + response.JSON);
+        console.log("response - " + response.data);
 
         htmlContents.push(response.data); // Push the HTML content to the array
       } catch (error) {
