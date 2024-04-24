@@ -55,26 +55,27 @@ const checkIfHasNewItem = async (imgUrls, topic) => {
             throw new Error(`Could not read / create ${filePath}`);
         }
     }
+    
     let shouldUpdateFile = false;
-    savedUrls = savedUrls.filter(savedUrl => {
-        shouldUpdateFile = true;
-        return imgUrls.includes(savedUrl);
-    });
     const newItems = [];
-    imgUrls.forEach(url => {
+    
+    for (const url of imgUrls) {
         if (!savedUrls.includes(url)) {
             savedUrls.push(url);
             newItems.push(url);
             shouldUpdateFile = true;
         }
-    });
+    }
+    
     if (shouldUpdateFile) {
         const updatedUrls = JSON.stringify(savedUrls, null, 2);
         fs.writeFileSync(filePath, updatedUrls);
         await createPushFlagForWorkflow();
     }
+    
     return newItems;
 }
+
 
 const createPushFlagForWorkflow = () => {
     fs.writeFileSync("push_me", "")
