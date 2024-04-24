@@ -58,6 +58,7 @@ const checkIfHasNewItem = async (imgUrls, topic) => {
     
     let shouldUpdateFile = false;
     const newItems = [];
+    console.log(imgUrls);
     
     for (const url of imgUrls) {
         if (!savedUrls.includes(url)) {
