@@ -1,4 +1,4 @@
-# Yad 2 Smart Scraper
+# Yad 2 Smart Scraper -fork
 
 Scrapes and notifies on new Yad2 items with a minimal setup.
 
