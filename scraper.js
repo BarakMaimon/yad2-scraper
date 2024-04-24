@@ -29,9 +29,12 @@ const scrapeItemsAndExtract = async (url) => {
   for (let i = 0; i < $feedItems.length; i++) {
     const parent = $($feedItems[i]).parent(); // Get the parent element
     const href = parent.attr("href"); // Get the href attribute
+    console.log("herf - " + href);
     if (href) {
       try {
         const response = await axios.get(href); // Fetch the HTML content from the URL
+        console.log("response - " + response);
+
         htmlContents.push(response.data); // Push the HTML content to the array
       } catch (error) {
         console.error(`Error fetching HTML content from ${href}:`, error);
@@ -39,7 +42,6 @@ const scrapeItemsAndExtract = async (url) => {
     }
   }
 
-  console.log("html content - ", htmlContents);
   return htmlContents;
 };
 
