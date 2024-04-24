@@ -37,6 +37,12 @@ jobs:
           export API_TOKEN=${{ secrets.API_TOKEN }}
           export CHAT_ID=${{ secrets.CHAT_ID }}
           yarn scrape
+          
+      - name: Debug Secrets
+	    run: |
+		  echo "API_TOKEN: ${{ secrets.API_TOKEN }}"
+		  echo "CHAT_ID: ${{ secrets.CHAT_ID }}"
+
 
       - name: Push new json data if needed
         run: |
