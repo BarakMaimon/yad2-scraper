@@ -32,16 +32,16 @@ jobs:
           echo "API_TOKEN: $API_TOKEN"
           echo "CHAT_ID: $CHAT_ID"
 
+      - name: Debug Secrets
+        run: |
+          echo "API_TOKEN: ${{ secrets.API_TOKEN }}"
+          echo "CHAT_ID: ${{ secrets.CHAT_ID }}"
+
       - name: Run scraper
         run: |
           export API_TOKEN=${{ secrets.API_TOKEN }}
           export CHAT_ID=${{ secrets.CHAT_ID }}
           yarn scrape
-
-      - name: Debug Secrets
-        run: |
-          echo "API_TOKEN: ${{ secrets.API_TOKEN }}"
-          echo "CHAT_ID: ${{ secrets.CHAT_ID }}"
 
       - name: Push new json data if needed
         run: |
