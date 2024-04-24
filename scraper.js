@@ -23,7 +23,7 @@ const scrapeItemsAndExtract = async (url) => {
     throw new Error("Could not get Yad2 response");
   }
   const $ = cheerio.load(yad2Html);
-  const $feedItems = $(".feed-item-base_itemMainContent__WFXEZ a");
+  const $feedItems = $(".feed-item-base_itemMainContent__WFXEZ");
   const htmlContents = [];
   // Map the anchor tags to an array of promises representing the asynchronous axios requests
   const promises = $feedItems
