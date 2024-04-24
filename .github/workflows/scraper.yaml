@@ -26,6 +26,12 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "${{ secrets.GIT_CONFIG_EMAIL }}"
+          
+      - name: Debug Environment Variables
+	  	run: |
+			echo "API_TOKEN: $API_TOKEN"
+			echo "CHAT_ID: $CHAT_ID"
+
 
       - name: Run scraper
         run: |
