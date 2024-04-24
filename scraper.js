@@ -58,7 +58,6 @@ const checkIfHasNewItem = async (imgUrls, topic) => {
     
     let shouldUpdateFile = false;
     const newItems = [];
-    console.log(imgUrls);
     
     for (const url of imgUrls) {
         if (!savedUrls.includes(url)) {
@@ -89,6 +88,7 @@ const scrape = async (topic, url) => {
     try {
         await telenode.sendTextMessage(`Starting scanning ${topic} on link:\n${url}`, chatId)
         const scrapeImgResults = await scrapeItemsAndExtractImgUrls(url);
+        console.log(scrapeImgResults);
         const newItems = await checkIfHasNewItem(scrapeImgResults, topic);
         if (newItems.length > 0) {
             const newItemsJoined = newItems.join("\n----------\n");
