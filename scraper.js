@@ -29,11 +29,13 @@ const scrapeItemsAndExtract = async (url) => {
   const promises = $feedItems
     .map(async (_, anchor) => {
       const href = $(anchor).attr("href");
+      console.log("Fetching HTML from:", href); // Add this line to log the href value
       if (href) {
         try {
           const response = await axios.get(href);
           const html = response.data;
           htmlContents.push(html);
+          console.log("HTML content fetched from:", href); // Add this line to log successful fetch
         } catch (error) {
           console.error(`Error fetching HTML content from ${href}:`, error);
         }
@@ -124,7 +126,6 @@ const scrape = async (topic, url) => {
       chatId
     );
     const scrapeImgResults = await scrapeItemsAndExtract(url);
-    console.log(scrapeImgResults);
     const newItems = await checkIfHasNewItem(scrapeImgResults, topic);
     if (newItems.length > 0) {
       const newItemsJoined = newItems.join("\n----------\n");
