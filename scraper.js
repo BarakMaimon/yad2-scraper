@@ -121,7 +121,10 @@ const scrape = async (topic, url) => {
       chatId
     );
     const scrapeImgResults = await scrapeItemsAndExtract(url);
+    console.log("just finished scrapeItemsAndExtract");
     const newItems = await checkIfHasNewItem(scrapeImgResults, topic);
+    console.log("just finished checkIfHasNewItem");
+
     if (newItems.length > 0) {
       const newItemsJoined = newItems.join("\n----------\n");
       const msg = `${newItems.length} new items:\n${newItemsJoined}`;
