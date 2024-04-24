@@ -29,7 +29,7 @@ const scrapeItemsAndExtractImgUrls = async (url) => {
         throw new Error("Bot detection");
     }
     const $feedItems = $("img.feed-item-base_image__QKeIo");
-    console.log("Items - " + feedItems);
+    console.log("Items - " + $feedItems);
     if (!$feedItems) {
         throw new Error("Could not find feed items");
     }
