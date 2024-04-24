@@ -37,7 +37,7 @@ const scrapeItemsAndExtract = async (url) => {
       }
     }
   });
-  console.log(htmlContents);
+  console.log("html content - " + htmlContents);
   return htmlContents;
 };
 
